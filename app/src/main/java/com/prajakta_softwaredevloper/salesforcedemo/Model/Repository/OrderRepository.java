@@ -17,15 +17,20 @@ import java.util.concurrent.Executors;
 
 public class OrderRepository {
     private OrderItemDao orderItemDao;
+    private LiveData<Integer> totalOrderCount;
+
 
     public OrderRepository(Application application) {
         SalesForceDatabase db = SalesForceDatabase.getDatabase(application);
         orderItemDao = db.orderItemDao();
+        totalOrderCount = orderItemDao.getTotalOrderCount();
+
     }
 
     public void insertData(OrderItem data) {
         new OrderInsertion(orderItemDao).execute(data);
     }
+
 
 
     public LiveData<List<OrderItem>> getOrderItemsByShop(String shopId) {
@@ -51,6 +56,9 @@ public class OrderRepository {
 
         }
 
+    }
+    public LiveData<Integer> getTotalOrderCount() {
+        return totalOrderCount;
     }
 
 }

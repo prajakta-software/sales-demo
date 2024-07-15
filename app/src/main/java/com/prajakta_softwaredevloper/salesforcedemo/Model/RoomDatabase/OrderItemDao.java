@@ -16,5 +16,6 @@ public interface OrderItemDao {
     @Query("SELECt * FROM shopOrderDetailsTable WHERE shopId=:shopId")
     LiveData<List<OrderItem>> getOrderItemsByShop(String shopId);
 
-
+    @Query("SELECT COUNT(*) FROM shopOrderDetailsTable")
+    LiveData<Integer> getTotalOrderCount();
 }

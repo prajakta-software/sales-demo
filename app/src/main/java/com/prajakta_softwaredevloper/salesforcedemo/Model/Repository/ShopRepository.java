@@ -18,12 +18,16 @@ public class ShopRepository {
 
     private ShopDao shopDao;
     private LiveData<List<ShopDetails>> allData;
+    private LiveData<Integer> totalShopCount;
+
 
     public ShopRepository(Application application) {
 
         SalesForceDatabase db = SalesForceDatabase.getDatabase(application);
         shopDao = db.shopDao();
         allData = shopDao.getShopDetails();
+        totalShopCount = shopDao.getTotalShopCount();
+
 
     }
 
@@ -71,6 +75,9 @@ public class ShopRepository {
 
         }
 
+    }
+    public LiveData<Integer> getTotalShopCount() {
+        return totalShopCount;
     }
 
 }

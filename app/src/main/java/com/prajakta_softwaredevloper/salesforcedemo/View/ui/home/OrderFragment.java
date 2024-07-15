@@ -1,5 +1,4 @@
 package com.prajakta_softwaredevloper.salesforcedemo.View.ui.home;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -16,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +27,7 @@ import com.prajakta_softwaredevloper.salesforcedemo.Model.RoomDatabase.OrderItem
 import com.prajakta_softwaredevloper.salesforcedemo.Model.RoomDatabase.ShopDetails;
 import com.prajakta_softwaredevloper.salesforcedemo.R;
 import com.prajakta_softwaredevloper.salesforcedemo.View.adapter.OrderAdapter;
+import com.prajakta_softwaredevloper.salesforcedemo.ViewModel.OrderViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,9 @@ public class OrderFragment extends Fragment {
     private RecyclerView orderRecyclerView;
     private OrderAdapter orderAdapter;
     private List<OrderItem> orderItemList;
+    private OrderViewModel orderViewModel;
+
+    private boolean isItemAdded = false;
 
     @Nullable
     @Override
@@ -59,6 +63,7 @@ public class OrderFragment extends Fragment {
         placeOrderButton = view.findViewById(R.id.placeOrderButton);
         addItemButton = view.findViewById(R.id.addItemButton);
         orderRecyclerView = view.findViewById(R.id.orderRecyclerView);
+        orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
 
         // Initialize order list and adapter
         orderItemList = new ArrayList<>();
@@ -67,7 +72,6 @@ public class OrderFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         orderRecyclerView.setLayoutManager(layoutManager);
         orderRecyclerView.setAdapter(orderAdapter);
-
 
         // Retrieve shop details from arguments
         Bundle args = getArguments();
@@ -81,6 +85,9 @@ public class OrderFragment extends Fragment {
         // Initialize FusedLocationProviderClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());
 
+        // Disable place order button initially
+        placeOrderButton.setEnabled(false);
+
         // Handle place order button click
         placeOrderButton.setOnClickListener(v -> checkLocationAndPlaceOrder());
 
@@ -88,6 +95,9 @@ public class OrderFragment extends Fragment {
         addItemButton.setOnClickListener(v -> {
             // Placeholder logic to add an item to the order list
             addSampleItem();
+            // Enable place order button once an item is added
+            placeOrderButton.setEnabled(true);
+            isItemAdded = true;
         });
     }
 
@@ -104,6 +114,12 @@ public class OrderFragment extends Fragment {
     }
 
     private void checkLocationAndPlaceOrder() {
+        // Check if item is added before placing order
+        if (!isItemAdded) {
+            Toast.makeText(requireContext(), "Please add an item before placing an order.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Check location permission
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -140,7 +156,11 @@ public class OrderFragment extends Fragment {
 
     private void placeSampleOrder() {
         // Replace with your logic to place an order
-       OrderListFragment fragment = new OrderListFragment();
+        OrderListFragment fragment = new OrderListFragment();
+        Bundle args = new Bundle();
+        args.putString("shopId", String.valueOf(shop.getId())); // Pass shop name to fragment
+        args.putString("shopName", String.valueOf(shop.getShopName())); // Pass shop name to fragment
+        fragment.setArguments(args);
 
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.nav_host_fragment_activity_dashboard, fragment)
@@ -156,7 +176,10 @@ public class OrderFragment extends Fragment {
         newItem.setPrice(100.00);
         newItem.setQuantity(12);
         newItem.setGst(18.00);
+        newItem.setShopId(String.valueOf(shop.getId()));
         orderItemList.add(newItem);
+        orderViewModel.insert(newItem);
+
         orderAdapter.notifyItemInserted(orderItemList.size() - 1);
     }
 

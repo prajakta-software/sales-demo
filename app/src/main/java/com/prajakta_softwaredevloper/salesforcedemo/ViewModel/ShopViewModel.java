@@ -14,16 +14,21 @@ public class ShopViewModel extends AndroidViewModel {
 
     private ShopRepository repository;
     private LiveData<List<ShopDetails>> getAllData;
-    private LiveData<ShopDetails> getSelectedShopData;
+    private LiveData<Integer> totalShopCount;
+
 
     public ShopViewModel(@NonNull Application application) {
         super(application);
 
         repository = new ShopRepository(application);
         getAllData = repository.getAllData();
+        totalShopCount = repository.getTotalShopCount();
 
     }
 
+    public LiveData<Integer> getTotalShopCount() {
+        return totalShopCount;
+    }
     public void insert(ShopDetails data) {
         repository.insertData(data);
     }
