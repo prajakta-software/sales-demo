@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".View.ui.home.DashboardFragment">
+
+    <EditText
+        android:id="@+id/etShopName"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:hint="@string/shop_name"
+        android:autofillHints="@string/shop_name"
+        android:background="@drawable/edittext_border"
+        android:inputType="text"
+        android:paddingStart="16dp"
+        android:paddingEnd="1dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/etShopContactNumber"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:hint="@string/contact_number"
+        android:layout_marginTop="16dp"
+        android:autofillHints="@string/contact_number"
+        android:background="@drawable/edittext_border"
+        android:inputType="phone"
+        android:paddingStart="16dp"
+        android:paddingEnd="1dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/etShopName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivShopImage"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/shop_name"
+        android:scaleType="centerCrop"
+        android:background="#DDDDDD"
+        app:layout_constraintTop_toBottomOf="@id/etShopContactNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/llButtons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/ivShopImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/btnUploadImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:text="@string/upload_image" />
+
+        <Button
+            android:id="@+id/btnCaptureImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="@string/take_a_photo" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/etShopLocation"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:hint="@string/enter_shop_location_click_to_get_location"
+        android:layout_marginTop="16dp"
+        android:editable="false"
+        android:drawableEnd="@drawable/icon_location"
+        android:autofillHints="@string/enter_shop_location_click_to_get_location"
+        android:background="@drawable/edittext_border"
+        android:inputType="text"
+        android:paddingStart="16dp"
+        android:paddingEnd="2dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/llButtons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnSaveShopDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/save_shop"
+        app:layout_constraintTop_toBottomOf="@id/etShopLocation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
