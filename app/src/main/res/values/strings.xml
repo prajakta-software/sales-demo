@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">SalesForceDemo</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">REGISTER NOW!</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">password</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="login">Login</string>
+    <string name="login_btn">Login</string>
+    <string name="no_account_click_here_to_registration">No Account? Click Here To Registration</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="shop">Shop</string>
+    <string name="sales_order">Sales Order</string>
+    <string name="shop_name">Shop Name</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="save_shop">Save Shop</string>
+    <string name="take_a_photo">Take a photo</string>
+    <string name="enter_shop_location_click_to_get_location">Enter Shop Location / click to get location</string>
+    <string name="shop_name1">Shop Name</string>
+    <string name="contact">Contact</string>
+    <string name="address">Address</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="add_shop">Add Shop</string>
+    <string name="view_shops">View Shops</string>
+    <string name="place_order">Place Order</string>
+    <string name="item_name">Item Name</string>
+    <string name="qty">Qty</string>
+    <string name="price">Price</string>
+    <string name="gst">GST</string>
+</resources>

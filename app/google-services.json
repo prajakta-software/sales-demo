@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493352119117",
+    "project_id": "salesforcedemo-dc208",
+    "storage_bucket": "salesforcedemo-dc208.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493352119117:android:30748705f72aab52e86504",
+        "android_client_info": {
+          "package_name": "com.prajakta_softwaredevloper.salesforcedemo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZmEctVBmvz0HSo0_BUKbqS_RSCQXbXlk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
