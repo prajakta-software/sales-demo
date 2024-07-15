@@ -140,12 +140,12 @@ public class OrderFragment extends Fragment {
 
     private void placeSampleOrder() {
         // Replace with your logic to place an order
-      /*  OrderListFragment fragment = new OrderListFragment();
+       OrderListFragment fragment = new OrderListFragment();
 
         requireActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.nav_host_fragment_activity_dashboard, fragment)
                 .addToBackStack(null)
-                .commit();*/
+                .commit();
         Toast.makeText(requireContext(), "Sample order placed successfully!", Toast.LENGTH_SHORT).show();
     }
 
