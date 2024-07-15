@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SalesForceDemo</string>
+    <string name="app_name">Sales Order</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="register">REGISTER NOW!</string>
     <string name="phone_number">Phone Number</string>
@@ -31,4 +31,8 @@
     <string name="qty">Qty</string>
     <string name="price">Price</string>
     <string name="gst">GST</string>
+    <string name="click_here_to_place_order">Click here to place order</string>
+    <string name="comming_soon">Coming Soon!!</string>
+    <string name="total_orders">Total Orders</string>
+    <string name="total_created_shop">Total Created Shop</string>
 </resources>

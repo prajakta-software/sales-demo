@@ -1,15 +1,19 @@
 package com.prajakta_softwaredevloper.salesforcedemo.View.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.prajakta_softwaredevloper.salesforcedemo.Model.RoomDatabase.OrderItem;
 import com.prajakta_softwaredevloper.salesforcedemo.R;
+import com.prajakta_softwaredevloper.salesforcedemo.ViewModel.OrderViewModel;
 
 import java.util.List;
 
@@ -19,6 +23,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     public OrderAdapter(List<OrderItem> orderItemList) {
         this.orderItemList = orderItemList;
+
     }
 
     @NonNull
@@ -32,50 +37,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         OrderItem orderItem = orderItemList.get(position);
 
-        holder.itemNameEditText.setText(orderItem.getItemName());
-        holder.quantityEditText.setText(String.valueOf(orderItem.getQuantity()));
-        holder.priceEditText.setText(String.valueOf(orderItem.getPrice()));
-        holder.gstEditText.setText(String.valueOf(orderItem.getGst()));
+        holder.itemNameEditText.setText(String.format("Product Name:%s", orderItem.getItemName()));
+        holder.quantityEditText.setText(String.format("Product Qty:%s",orderItem.getQuantity()));
+        holder.priceEditText.setText(String.format("Product Price:%s",orderItem.getPrice()));
+        holder.gstEditText.setText(String.format("Product GST:%s",orderItem.getGst()));
 
-        holder.itemNameEditText.addTextChangedListener(new SimpleTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                orderItem.setItemName(s.toString());
-            }
-        });
 
-        holder.quantityEditText.addTextChangedListener(new SimpleTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                try {
-                    orderItem.setQuantity(Integer.parseInt(s.toString()));
-                } catch (NumberFormatException e) {
-                    orderItem.setQuantity(0);
-                }
-            }
-        });
-
-        holder.priceEditText.addTextChangedListener(new SimpleTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                try {
-                    orderItem.setPrice(Double.parseDouble(s.toString()));
-                } catch (NumberFormatException e) {
-                    orderItem.setPrice(0.0);
-                }
-            }
-        });
-
-        holder.gstEditText.addTextChangedListener(new SimpleTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                try {
-                    orderItem.setGst(Double.parseDouble(s.toString()));
-                } catch (NumberFormatException e) {
-                    orderItem.setGst(0.0);
-                }
-            }
-        });
     }
 
     @Override
@@ -85,10 +52,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     public static class OrderViewHolder extends RecyclerView.ViewHolder {
 
-        EditText itemNameEditText;
-        EditText quantityEditText;
-        EditText priceEditText;
-        EditText gstEditText;
+        TextView itemNameEditText;
+        TextView quantityEditText;
+        TextView priceEditText;
+        TextView gstEditText;
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);

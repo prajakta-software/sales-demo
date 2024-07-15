@@ -291,18 +291,16 @@ public class DashboardFragment extends Fragment {
         values.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis() / 1000);
         values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
         values.put(MediaStore.Images.Media.DATA, imageFile.getAbsolutePath());
-
         ContentResolver contentResolver = requireActivity().getContentResolver();
         Uri imageUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
         if (imageUri != null) {
             imagePath = String.valueOf(imageUri);
             Log.v("ImagePathFromCamera22",imagePath);
-
-
             Toast.makeText(requireContext(), "Image saved to MediaStore", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(requireContext(), "Failed to save image to MediaStore", Toast.LENGTH_SHORT).show();
         }
     }
 }
+

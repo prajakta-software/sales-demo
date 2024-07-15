@@ -11,6 +11,7 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 
 import com.prajakta_softwaredevloper.salesforcedemo.R;
+import com.prajakta_softwaredevloper.salesforcedemo.View.ui.dashboard.NewDashboardFragment;
 import com.prajakta_softwaredevloper.salesforcedemo.View.ui.home.DashboardFragment;
 import com.prajakta_softwaredevloper.salesforcedemo.View.ui.home.HomeFragment;
 import android.view.View;
@@ -23,12 +24,13 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_dashboard);
 
+
         BottomNavigationView bottomNav = findViewById(R.id.nav_view);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         // Default fragment
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_dashboard, new HomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_dashboard, new NewDashboardFragment()).commit();
         }
     }
 
@@ -39,9 +41,11 @@ public class DashboardActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
 
                     if (item.getItemId() == R.id.navigation_home) {
-                        selectedFragment = new HomeFragment();
+                        selectedFragment = new NewDashboardFragment();
+
                     }else  if (item.getItemId() == R.id.navigation_shop) {
                         showShopSubmenu();
+
 
                         //selectedFragment = new DashboardFragment();
                     }else  if (item.getItemId() == R.id.navigation_salesorder) {

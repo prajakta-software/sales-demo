@@ -34,4 +34,7 @@ public interface ShopDao {
     @Query("SELECT * FROM ShopDetails WHERE Id = :id")
     LiveData<ShopDetails> getSelectedShop(int id);
 
+    @Query("SELECT COUNT(*) FROM ShopDetails")
+    LiveData<Integer> getTotalShopCount();
+
 }
